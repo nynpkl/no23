@@ -8,6 +8,7 @@ export default function App() {
   const [resultFilter, setResultFilter] = useState("All");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [dateResetKey, setDateResetKey] = useState(0);
 
   const formatDate = (dateStr) => {
     const d = new Date(dateStr);
@@ -337,6 +338,7 @@ export default function App() {
             <span className="dateLabel">Tarih</span>
 
             <input
+              key={`start-${dateResetKey}`}
               type="date"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
@@ -346,6 +348,7 @@ export default function App() {
             <span>–</span>
 
             <input
+              key={`end-${dateResetKey}`}
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
@@ -357,6 +360,7 @@ export default function App() {
                 onClick={() => {
                   setStartDate("");
                   setEndDate("");
+                  setDateResetKey((prev) => prev + 1);
                 }}
                 className="clearBtn"
                 title="Tarih filtresini temizle"
