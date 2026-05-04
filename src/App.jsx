@@ -36,7 +36,13 @@ export default function App() {
 
   return (
     <div style={styles.page}>
-      <h1 style={styles.title}>No23 Basketball Academy Match Archive</h1>
+      <header style={styles.header}>
+        <div>
+          <div style={styles.kicker}>No23 Basketball Academy</div>
+          <h1 style={styles.title}>Match Archive</h1>
+        </div>
+        <div style={styles.count}>{filtered.length} maç</div>
+      </header>
 
       <div style={styles.filters}>
         <select onChange={(e) => setSeasonFilter(e.target.value)} style={styles.select}>
@@ -59,7 +65,6 @@ export default function App() {
           <option>Unibest</option>
           <option>Gelişim</option>
           <option>TBF</option>
-          <option>Hazırlık</option>
         </select>
 
         <select onChange={(e) => setResultFilter(e.target.value)} style={styles.select}>
@@ -69,7 +74,7 @@ export default function App() {
         </select>
 
         <div style={styles.dateGroup}>
-          <span style={styles.label}>Tarih:</span>
+          <span style={styles.label}>Tarih</span>
 
           <input
             type="date"
@@ -78,7 +83,7 @@ export default function App() {
             style={styles.dateInput}
           />
 
-          <span style={styles.arrow}>→</span>
+          <span style={styles.arrow}>–</span>
 
           <input
             type="date"
@@ -104,8 +109,8 @@ export default function App() {
 
       <div style={styles.list}>
         {filtered.map((m) => (
-          <div key={m.id} style={styles.row}>
-            <div style={styles.left}>
+          <div key={m.id} style={styles.card}>
+            <div style={styles.main}>
               <div style={styles.topLine}>
                 <span style={styles.badge}>{m.season}</span>
                 <span style={styles.badge}>{m.age}</span>
@@ -116,15 +121,15 @@ export default function App() {
               </div>
 
               <div style={styles.match}>
-                No23 Basketball Academy vs {m.opponent}
+                No23 Basketball Academy <span style={styles.vs}>vs</span> {m.opponent}
               </div>
 
               <div style={styles.sub}>
-                {formatDate(m.date)} • Skor: {m.score}
+                {formatDate(m.date)} · Skor: {m.score}
               </div>
             </div>
 
-            <div style={styles.right}>
+            <div style={styles.actions}>
               <a href={m.video} target="_blank" rel="noreferrer" style={styles.video}>
                 Video
               </a>
@@ -149,49 +154,82 @@ const styles = {
     background: "#ffffff",
     color: "#111",
     minHeight: "100vh",
-    fontFamily: "Arial",
-    padding: "24px",
-    maxWidth: 900,
+    fontFamily:
+      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
+    padding: "28px 18px",
+    maxWidth: 980,
     margin: "0 auto",
     boxSizing: "border-box"
   },
 
+  header: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    gap: 16,
+    marginBottom: 22,
+    borderBottom: "1px solid #eee",
+    paddingBottom: 18,
+    flexWrap: "wrap"
+  },
+
+  kicker: {
+    fontSize: 14,
+    color: "#777",
+    fontWeight: 600,
+    marginBottom: 4
+  },
+
   title: {
-    marginBottom: 20,
-    fontSize: "clamp(32px, 8vw, 58px)",
-    lineHeight: 1.08
+    margin: 0,
+    fontSize: "clamp(30px, 5vw, 44px)",
+    lineHeight: 1.05,
+    letterSpacing: "-1px"
+  },
+
+  count: {
+    fontSize: 13,
+    background: "#f5f1dc",
+    border: "1px solid #eee2a8",
+    padding: "6px 10px",
+    borderRadius: 999,
+    color: "#333",
+    fontWeight: 600
   },
 
   filters: {
     display: "flex",
-    gap: 10,
-    marginBottom: 20,
+    gap: 8,
+    marginBottom: 18,
     flexWrap: "wrap"
   },
 
   select: {
-    padding: "10px 14px",
+    height: 38,
+    padding: "0 12px",
     border: "1px solid #ddd",
-    borderRadius: 8,
-    fontSize: 16,
-    maxWidth: "100%"
+    borderRadius: 10,
+    background: "#fff",
+    fontSize: 14,
+    color: "#111"
   },
 
   dateGroup: {
+    minHeight: 38,
     display: "flex",
     alignItems: "center",
-    gap: 8,
+    gap: 7,
     border: "1px solid #ddd",
-    padding: "8px 10px",
-    borderRadius: 8,
+    padding: "0 10px",
+    borderRadius: 10,
     background: "#fafafa",
-    flexWrap: "wrap",
-    maxWidth: "100%"
+    flexWrap: "wrap"
   },
 
   label: {
-    fontSize: 14,
-    color: "#555"
+    fontSize: 13,
+    color: "#666",
+    fontWeight: 600
   },
 
   arrow: {
@@ -201,8 +239,9 @@ const styles = {
   dateInput: {
     border: "none",
     background: "transparent",
-    fontSize: 14,
-    maxWidth: 135
+    fontSize: 13,
+    maxWidth: 125,
+    outline: "none"
   },
 
   clearBtn: {
@@ -210,108 +249,121 @@ const styles = {
     background: "transparent",
     cursor: "pointer",
     color: "#999",
-    fontSize: 14
+    fontSize: 13
   },
 
   list: {
     display: "flex",
     flexDirection: "column",
-    gap: 12
+    gap: 10
   },
 
-  row: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    border: "1px solid #eee",
+  card: {
+    display: "grid",
+    gridTemplateColumns: "1fr auto",
+    gap: 14,
+    alignItems: "center",
+    border: "1px solid #eeeeee",
     borderRadius: 14,
     padding: 14,
-    gap: 14,
-    flexWrap: "wrap"
+    background: "#fff",
+    boxShadow: "0 1px 4px rgba(0,0,0,0.03)"
   },
 
-  left: {
-    flex: "1 1 260px",
+  main: {
     minWidth: 0
   },
 
   topLine: {
     display: "flex",
-    gap: 8,
-    marginBottom: 8,
-    fontSize: 14,
+    gap: 7,
+    marginBottom: 7,
+    fontSize: 13,
     flexWrap: "wrap",
     alignItems: "center"
   },
 
   badge: {
-    background: "#f4e7b2",
-    padding: "4px 8px",
-    borderRadius: 6
+    background: "#f5e8ad",
+    padding: "3px 7px",
+    borderRadius: 7,
+    fontWeight: 600,
+    color: "#111"
   },
 
   meta: {
-    color: "#777"
+    color: "#777",
+    fontWeight: 500
   },
 
   win: {
-    color: "green"
+    color: "#168000",
+    fontWeight: 600
   },
 
   lose: {
-    color: "red"
+    color: "#c60000",
+    fontWeight: 600
   },
 
   match: {
-    fontWeight: "bold",
-    fontSize: "clamp(22px, 5vw, 32px)",
-    lineHeight: 1.15
+    fontWeight: 750,
+    fontSize: "clamp(18px, 3vw, 23px)",
+    lineHeight: 1.2,
+    letterSpacing: "-0.3px"
+  },
+
+  vs: {
+    color: "#777",
+    fontWeight: 600
   },
 
   sub: {
-    fontSize: 16,
+    fontSize: 14,
     color: "#666",
     marginTop: 4
   },
 
-  right: {
+  actions: {
     display: "flex",
-    gap: 8,
+    gap: 7,
     flexWrap: "wrap",
-    width: "100%"
+    justifyContent: "flex-end"
   },
 
   video: {
     background: "#111",
     color: "#fff",
-    padding: "10px 14px",
-    borderRadius: 8,
+    padding: "8px 12px",
+    borderRadius: 9,
     textDecoration: "none",
-    fontSize: 16,
-    textAlign: "center",
-    flex: "1 1 90px"
+    fontSize: 13,
+    fontWeight: 700,
+    textAlign: "center"
   },
 
   highlights: {
-    background: "#f4e7b2",
+    background: "#f5e8ad",
     color: "#111",
-    padding: "10px 14px",
-    borderRadius: 8,
+    padding: "8px 12px",
+    borderRadius: 9,
     textDecoration: "none",
-    fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "center",
-    flex: "1 1 120px"
+    fontSize: 13,
+    fontWeight: 700,
+    textAlign: "center"
   },
 
   stats: {
     border: "1px solid #ddd",
-    padding: "10px 14px",
-    borderRadius: 8,
+    padding: "8px 12px",
+    borderRadius: 9,
     textDecoration: "none",
-    fontSize: 16,
+    fontSize: 13,
     color: "#111",
+    fontWeight: 700,
     textAlign: "center",
-    flex: "1 1 80px"
-  }
+    background: "#fff"
+  },
+
+  "@media": {}
 };
