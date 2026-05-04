@@ -1,201 +1,209 @@
+import { useState } from "react";
+
 const matches = [
   {
-    date: "01.05.2026",
-    category: "U10",
-    league: "TBF Seri C - G Grubu",
-    home: "No23 Basketball Academy",
-    away: "Fatih Belediyesi SK",
-    venue: "BGM Salon C3",
-    videoUrl: "https://youtube.com",
-    statsUrl: "https://docs.google.com",
-    note: "Skor : 31-33 (M)"
+    id: 1,
+    date: "2026-05-01",
+    age: "U10",
+    league: "TBF",
+    result: "Galibiyet",
+    opponent: "Fatih Belediyesi",
+    score: "42-30",
+    video: "https://youtube.com",
+    stats: "https://docs.google.com"
   },
   {
-    date: "26.04.2026",
-    category: "U9",
-    league: "Unibest Ligi",
-    home: "No23 Basketball Academy",
-    away: "Bahçeşehir İhtisas B",
-    venue: "İstanbul",
-    videoUrl: "https://youtube.com",
-    statsUrl: "https://docs.google.com",
-    note: "Skor : 14-6 (G)"
+    id: 2,
+    date: "2026-04-26",
+    age: "U9",
+    league: "Unibest",
+    result: "Mağlubiyet",
+    opponent: "Anka Avrupa",
+    score: "28-35",
+    video: "https://youtube.com",
+    stats: "https://docs.google.com"
   }
 ];
 
 export default function App() {
+  const [ageFilter, setAgeFilter] = useState("All");
+  const [leagueFilter, setLeagueFilter] = useState("All");
+  const [resultFilter, setResultFilter] = useState("All");
+
+  const filtered = matches.filter((m) => {
+    return (
+      (ageFilter === "All" || m.age === ageFilter) &&
+      (leagueFilter === "All" || m.league === leagueFilter) &&
+      (resultFilter === "All" || m.result === resultFilter)
+    );
+  });
+
   return (
     <div style={styles.page}>
-      
-      {/* HEADER */}
-      <header style={styles.hero}>
-        <div style={styles.badge}>🔒 Özel Maç Arşivi</div>
-        <h1 style={styles.title}>NO23 Basketball Academy</h1>
-        <p style={styles.subtitle}>
-          Maç videoları ve istatistikler tek yerde
-        </p>
-      </header>
+      <h1 style={styles.title}>No23 Match Archive</h1>
 
-      {/* CONTENT */}
-      <main style={styles.container}>
-        <div style={styles.info}>
-          {matches.length} maç listeleniyor
-        </div>
+      {/* FILTERS */}
+      <div style={styles.filters}>
+        <select onChange={(e) => setAgeFilter(e.target.value)} style={styles.select}>
+          <option value="All">Yaş</option>
+          <option>U8</option>
+          <option>U9</option>
+          <option>U10</option>
+          <option>U11</option>
+          <option>U12</option>
+        </select>
 
-        <div style={styles.grid}>
-          {matches.map((m, i) => (
-            <div key={i} style={styles.card}>
+        <select onChange={(e) => setLeagueFilter(e.target.value)} style={styles.select}>
+          <option value="All">Lig</option>
+          <option>Unibest</option>
+          <option>Gelişim</option>
+          <option>TBF</option>
+        </select>
 
-              <div style={styles.cardTop}>
-                <span style={styles.category}>{m.category}</span>
-                <h2 style={styles.match}>
-                  {m.home} vs {m.away}
-                </h2>
-                <p style={styles.league}>{m.league}</p>
+        <select onChange={(e) => setResultFilter(e.target.value)} style={styles.select}>
+          <option value="All">Sonuç</option>
+          <option>Galibiyet</option>
+          <option>Mağlubiyet</option>
+        </select>
+      </div>
+
+      {/* LIST */}
+      <div style={styles.list}>
+        {filtered.map((m) => (
+          <div key={m.id} style={styles.row}>
+
+            <div style={styles.left}>
+              <div style={styles.topLine}>
+                <span style={styles.badge}>{m.age}</span>
+                <span style={styles.meta}>{m.league}</span>
+                <span style={m.result === "Galibiyet" ? styles.win : styles.lose}>
+                  {m.result}
+                </span>
               </div>
 
-              <div style={styles.cardBody}>
-                <p>📅 {m.date}</p>
-                <p>📍 {m.venue}</p>
-                <p style={styles.note}>{m.note}</p>
-
-                <div style={styles.buttons}>
-                  <a href={m.videoUrl} target="_blank" style={styles.video}>
-                    ▶ İzle
-                  </a>
-                  <a href={m.statsUrl} target="_blank" style={styles.stats}>
-                    📊 Stats
-                  </a>
-                </div>
+              <div style={styles.match}>
+                No23 vs {m.opponent}
               </div>
 
+              <div style={styles.sub}>
+                {m.date} • Skor: {m.score}
+              </div>
             </div>
-          ))}
-        </div>
-      </main>
+
+            <div style={styles.right}>
+              <a href={m.video} target="_blank" style={styles.video}>
+                Video
+              </a>
+              <a href={m.stats} target="_blank" style={styles.stats}>
+                Stats
+              </a>
+            </div>
+
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 const styles = {
   page: {
-    background: "#000",
-    color: "#fff",
+    background: "#ffffff",
+    color: "#111",
     minHeight: "100vh",
-    fontFamily: "Arial"
-  },
-
-  hero: {
-    padding: "60px 20px",
-    textAlign: "center",
-    borderBottom: "1px solid #222"
-  },
-
-  badge: {
-    display: "inline-block",
-    background: "#facc15",
-    color: "#000",
-    padding: "6px 14px",
-    borderRadius: 999,
-    fontWeight: "bold",
-    marginBottom: 20
+    fontFamily: "Arial",
+    padding: 30,
+    maxWidth: 900,
+    margin: "0 auto"
   },
 
   title: {
-    fontSize: 44,
-    margin: 0,
-    letterSpacing: 2
+    marginBottom: 20
   },
 
-  subtitle: {
-    color: "#aaa"
+  filters: {
+    display: "flex",
+    gap: 10,
+    marginBottom: 20
   },
 
-  container: {
-    maxWidth: 1100,
-    margin: "0 auto",
-    padding: 20
+  select: {
+    padding: 8,
+    border: "1px solid #ddd",
+    borderRadius: 6
   },
 
-  info: {
-    marginBottom: 20,
-    color: "#aaa"
+  list: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 12
   },
 
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-    gap: 20
+  row: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    border: "1px solid #eee",
+    borderRadius: 10,
+    padding: 14
   },
 
-  card: {
-    border: "1px solid #222",
-    borderRadius: 20,
-    overflow: "hidden",
-    background: "#111",
-    transition: "0.2s"
+  left: {},
+
+  topLine: {
+    display: "flex",
+    gap: 8,
+    marginBottom: 6,
+    fontSize: 12
   },
 
-  cardTop: {
-    padding: 20,
-    background: "#000",
-    borderBottom: "1px solid #222"
+  badge: {
+    background: "#f4e7b2",
+    padding: "2px 6px",
+    borderRadius: 4
   },
 
-  category: {
-    background: "#facc15",
-    color: "#000",
-    padding: "4px 10px",
-    borderRadius: 999,
-    fontSize: 12,
-    fontWeight: "bold"
+  meta: {
+    color: "#777"
+  },
+
+  win: {
+    color: "green"
+  },
+
+  lose: {
+    color: "red"
   },
 
   match: {
-    marginTop: 15,
-    fontSize: 20
+    fontWeight: "bold"
   },
 
-  league: {
-    color: "#888",
-    fontSize: 14
+  sub: {
+    fontSize: 13,
+    color: "#666"
   },
 
-  cardBody: {
-    padding: 20,
-    color: "#ccc"
-  },
-
-  note: {
-    marginTop: 10,
-    minHeight: 40
-  },
-
-  buttons: {
-    marginTop: 20,
+  right: {
     display: "flex",
-    gap: 10
+    gap: 8
   },
 
   video: {
-    flex: 1,
-    textAlign: "center",
-    background: "#facc15",
-    color: "#000",
-    padding: 12,
-    borderRadius: 10,
+    background: "#111",
+    color: "#fff",
+    padding: "6px 10px",
+    borderRadius: 6,
     textDecoration: "none",
-    fontWeight: "bold"
+    fontSize: 12
   },
 
   stats: {
-    flex: 1,
-    textAlign: "center",
-    border: "1px solid #facc15",
-    color: "#facc15",
-    padding: 12,
-    borderRadius: 10,
+    border: "1px solid #ddd",
+    padding: "6px 10px",
+    borderRadius: 6,
     textDecoration: "none",
-    fontWeight: "bold"
+    fontSize: 12,
+    color: "#111"
   }
 };
