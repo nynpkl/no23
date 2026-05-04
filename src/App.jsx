@@ -29,20 +29,29 @@ export default function App() {
   const [ageFilter, setAgeFilter] = useState("All");
   const [leagueFilter, setLeagueFilter] = useState("All");
   const [resultFilter, setResultFilter] = useState("All");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
-  const filtered = matches.filter((m) => {
-    return (
-      (ageFilter === "All" || m.age === ageFilter) &&
-      (leagueFilter === "All" || m.league === leagueFilter) &&
-      (resultFilter === "All" || m.result === resultFilter)
-    );
-  });
+  const filtered = matches
+    .filter((m) => {
+      const matchDate = new Date(m.date);
+      const start = startDate ? new Date(startDate) : null;
+      const end = endDate ? new Date(endDate) : null;
+
+      return (
+        (ageFilter === "All" || m.age === ageFilter) &&
+        (leagueFilter === "All" || m.league === leagueFilter) &&
+        (resultFilter === "All" || m.result === resultFilter) &&
+        (!start || matchDate >= start) &&
+        (!end || matchDate <= end)
+      );
+    })
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
     <div style={styles.page}>
       <h1 style={styles.title}>No23 Match Archive</h1>
 
-      {/* FILTERS */}
       <div style={styles.filters}>
         <select onChange={(e) => setAgeFilter(e.target.value)} style={styles.select}>
           <option value="All">Yaş</option>
@@ -65,13 +74,25 @@ export default function App() {
           <option>Galibiyet</option>
           <option>Mağlubiyet</option>
         </select>
+
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          style={styles.select}
+        />
+
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          style={styles.select}
+        />
       </div>
 
-      {/* LIST */}
       <div style={styles.list}>
         {filtered.map((m) => (
           <div key={m.id} style={styles.row}>
-
             <div style={styles.left}>
               <div style={styles.topLine}>
                 <span style={styles.badge}>{m.age}</span>
@@ -81,9 +102,7 @@ export default function App() {
                 </span>
               </div>
 
-              <div style={styles.match}>
-                No23 vs {m.opponent}
-              </div>
+              <div style={styles.match}>No23 vs {m.opponent}</div>
 
               <div style={styles.sub}>
                 {m.date} • Skor: {m.score}
@@ -91,14 +110,13 @@ export default function App() {
             </div>
 
             <div style={styles.right}>
-              <a href={m.video} target="_blank" style={styles.video}>
+              <a href={m.video} target="_blank" rel="noreferrer" style={styles.video}>
                 Video
               </a>
-              <a href={m.stats} target="_blank" style={styles.stats}>
+              <a href={m.stats} target="_blank" rel="noreferrer" style={styles.stats}>
                 Stats
               </a>
             </div>
-
           </div>
         ))}
       </div>
@@ -124,7 +142,8 @@ const styles = {
   filters: {
     display: "flex",
     gap: 10,
-    marginBottom: 20
+    marginBottom: 20,
+    flexWrap: "wrap"
   },
 
   select: {
