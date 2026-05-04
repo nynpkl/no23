@@ -154,7 +154,33 @@ const matches = [
     video: "https://youtu.be/zcDIqMIkHh8",
     highlights: "",
     stats: ""
-  }
+    },
+    {
+    id: 13,
+    season: "2025-2026",
+    date: "2026-01-31",
+    age: "U8",
+    league: "Unibest",
+    result: "Mağlubiyet",
+    opponent: "Mimarsinan",
+    score: "19-24",
+    video: "https://youtu.be/IxGib9meUpw",
+    highlights: "https://youtu.be/rBPcALb9YXE",
+    stats: ""
+    },
+    {
+    id: 14,
+    season: "2025-2026",
+    date: "2026-04-18",
+    age: "U8",
+    league: "Unibest",
+    result: "Galibiyet",
+    opponent: "Florya Elit",
+    score: "22-6",
+    video: "https://youtu.be/TzjxjzYXu4M",
+    highlights: "",
+    stats: "https://easystats-bball.s3.amazonaws.com/EAF95E3C-C4D2-41EE-98F8-404916314BBD.html"
+    }
 ];
 
 export default matches;
