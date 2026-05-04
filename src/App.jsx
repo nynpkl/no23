@@ -6,9 +6,9 @@ const matches = [
     date: "2026-05-01",
     age: "U10",
     league: "TBF",
-    result: "Galibiyet",
+    result: "Mağlubiyet",
     opponent: "Fatih Belediyesi",
-    score: "42-30",
+    score: "31-33",
     video: "https://youtube.com",
     stats: "https://docs.google.com"
   },
@@ -17,9 +17,9 @@ const matches = [
     date: "2026-04-26",
     age: "U9",
     league: "Unibest",
-    result: "Mağlubiyet",
-    opponent: "Anka Avrupa",
-    score: "28-35",
+    result: "Galibiyet",
+    opponent: "Bahçeşehir İhtisas B",
+    score: "14-6",
     video: "https://youtube.com",
     stats: "https://docs.google.com"
   }
