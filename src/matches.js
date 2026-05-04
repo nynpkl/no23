@@ -50,9 +50,9 @@ const matches = [
     video: "https://youtu.be/329hW3BVXWo",
     highlights: "https://youtu.be/HNgYK6qwb8w",
     stats: "https://easystats-bball.s3.amazonaws.com/EA3F9B78-EEBB-4C34-B9B4-0F1A7F964CCE.html"
-    }
+    },
     {
-    id: 5
+    id: 5,
     season: "2025-2026",
     date: "2026-02-15",
     age: "U8",
@@ -62,6 +62,45 @@ const matches = [
     score: "32-25",
     video: "https://youtu.be/HczllQkV8lQ",
     highlights: "https://youtu.be/ROTJvFMhMDQ",
+    stats: ""
+    },
+    {
+    id: 6,
+    season: "2025-2026",
+    date: "2026-04-19",
+    age: "U8",
+    league: "Gelişim",
+    result: "Galibiyet",
+    opponent: "Sarıyer Yıldızları",
+    score: "39-8",
+    video: "https://youtu.be/8v8VTPDmV0c",
+    highlights: "https://youtu.be/WQaoTo7i8bM",
+    stats: "https://easystats-bball.s3.amazonaws.com/5624AD1C-260D-43DE-98A5-950D2171C677.html"
+    },
+    {
+    id: 7,
+    season: "2025-2026",
+    date: "2026-04-25",
+    age: "U8",
+    league: "Gelişim",
+    result: "Galibiyet",
+    opponent: "Petna",
+    score: "60-16",
+    video: "https://youtu.be/79DYMn1_g1Q",
+    highlights: "https://youtu.be/DEqJ11yukpY",
+    stats: ""
+    },
+    {
+    id: 8,
+    season: "2025-2026",
+    date: "2026-05-02",
+    age: "U8",
+    league: "Gelişim",
+    result: "Galibiyet",
+    opponent: "Solex Akademi",
+    score: "45-6",
+    video: "https://youtu.be/WsnPvmDXzYs",
+    highlights: "",
     stats: ""
     }
 ];
