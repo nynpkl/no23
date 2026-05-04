@@ -127,6 +127,16 @@ export default function App() {
               <a href={m.video} target="_blank" rel="noreferrer" style={styles.video}>
                 Video
               </a>
+
+              <a
+                href={m.highlights}
+                target="_blank"
+                rel="noreferrer"
+                style={styles.highlights}
+              >
+                Highlights
+              </a>
+
               <a href={m.stats} target="_blank" rel="noreferrer" style={styles.stats}>
                 Stats
               </a>
@@ -262,6 +272,16 @@ const styles = {
     borderRadius: 6,
     textDecoration: "none",
     fontSize: 12
+  },
+
+  highlights: {
+    background: "#f4e7b2",
+    color: "#111",
+    padding: "6px 10px",
+    borderRadius: 6,
+    textDecoration: "none",
+    fontSize: 12,
+    fontWeight: "bold"
   },
 
   stats: {
