@@ -8,6 +8,15 @@ export default function App() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
+  // ✅ TARİH FORMAT FONKSİYONU
+  const formatDate = (dateStr) => {
+    const d = new Date(dateStr);
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
   const filtered = matches
     .filter((m) => {
       const matchDate = new Date(m.date);
@@ -97,10 +106,12 @@ export default function App() {
                 </span>
               </div>
 
-              <div style={styles.match}>No23 Basketball Academy vs {m.opponent}</div>
+              <div style={styles.match}>
+                No23 Basketball Academy vs {m.opponent}
+              </div>
 
               <div style={styles.sub}>
-                {m.date} • Skor: {m.score}
+                {formatDate(m.date)} • Skor: {m.score}
               </div>
             </div>
 
