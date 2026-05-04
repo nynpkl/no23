@@ -299,10 +299,10 @@ export default function App() {
       <div className="page">
         <header className="header">
           <div>
-            <div className="kicker">No23 Basketball Academy</div>
-            <h1 className="title">Match Archive</h1>
+            <div className="title">No23 Basketball Academy</div>
+            <h1 className="kicker">Match Archive</h1>
           </div>
-          <div className="count">{filtered.length} maç</div>
+          <div className="count">{filtered.length} maç filtrelendi.</div>
         </header>
 
         <div className="filters">
