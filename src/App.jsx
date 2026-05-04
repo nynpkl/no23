@@ -59,6 +59,7 @@ export default function App() {
           <option>Unibest</option>
           <option>Gelişim</option>
           <option>TBF</option>
+          <option>Hazırlık</option>
         </select>
 
         <select onChange={(e) => setResultFilter(e.target.value)} style={styles.select}>
