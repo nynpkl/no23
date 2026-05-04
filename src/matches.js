@@ -10,7 +10,7 @@ const matches = [
     score: "40-32",
     video: “https://youtu.be/wMCPAHz5180“,
     highlights: “https://youtu.be/lzhVcqnnmHg“,
-    stats: “https://easystats-bball.s3.amazonaws.com/0BE86B7D-1EBC-43BD-9F40-30D2025BCCC5.html“
+    stats: “ehttps://easystats-bball.s3.amazonaws.com/0BE86B7D-1EBC-43BD-9F40-30D2025BCCC5.html“
   }
 ];
 
