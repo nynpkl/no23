@@ -128,6 +128,20 @@ const matches = [
     video: "https://youtu.be/WbpXusmCcT8",
     highlights: "https://youtu.be/_uXfzkdHCao",
     stats: "https://easystats-bball.s3.amazonaws.com/79BF0461-EBCF-4EE2-A4ED-7DF1D40478D3.html"
+    },
+    {
+    id: 11,
+    season: "2025-2026",
+    date: "2026-04-18",
+    age: "U9",
+    league: "Unibest",
+    result: "Galibiyet",
+    opponent: "Tepes",
+    score: "45-4",
+    video: "https://youtu.be/5y5ZPqV7Ny0",
+    highlights: "",
+    stats: "https://easystats-bball.s3.amazonaws.com/E7A6B582-E7AD-435D-81A1-3E2AF0D462C0.html"
+    }
   }
 ];
 
