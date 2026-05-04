@@ -219,7 +219,20 @@ const matches = [
     video: "https://youtu.be/_pVfMDEFAGo",
     highlights: "",
     stats: "https://easystats-bball.s3.amazonaws.com/BAC88C99-6714-4C23-B6F5-56668AC5FB9C.html"
-    }
+    },
+    {
+    id: 18,
+    season: "2025-2026",
+    date: "2026-04-01",
+    age: "U9",
+    league: "Hazırlık",
+    result: "Mağlubiyet",
+    opponent: "Bahçeşehir İhtisas",
+    score: "24-32",
+    video: "https://youtu.be/-8bDpeRs7rk",
+    highlights: "https://youtu.be/axpesFGrkjc",
+    stats: "https://easystats-bball.s3.amazonaws.com/34F4BE70-BC0E-4EB9-B643-66BA542907AC.html"
+  }
 ];
 
 export default matches;
