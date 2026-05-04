@@ -51,6 +51,19 @@ const matches = [
     highlights: "https://youtu.be/HNgYK6qwb8w",
     stats: "https://easystats-bball.s3.amazonaws.com/EA3F9B78-EEBB-4C34-B9B4-0F1A7F964CCE.html"
     }
+    {
+    id: 5
+    season: "2025-2026",
+    date: "2026-02-15",
+    age: "U8",
+    league: "Gelişim",
+    result: "Galibiyet",
+    opponent: "Kemer Basket",
+    score: "32-25",
+    video: "https://youtu.be/HczllQkV8lQ",
+    highlights: "https://youtu.be/ROTJvFMhMDQ",
+    stats: ""
+    }
 ];
 
 export default matches;
