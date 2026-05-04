@@ -394,21 +394,24 @@ export default function App() {
                 </div>
 
                 <div className="actions">
-                  <a href={m.video} target="_blank" rel="noreferrer" className="btn video">
-                    Video
-                  </a>
-                  <a
-                    href={m.highlights}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn highlights"
-                  >
-                    Highlights
-                  </a>
-                  <a href={m.stats} target="_blank" rel="noreferrer" className="btn stats">
-                    Stats
-                  </a>
-                </div>
+  {m.video && (
+    <a href={m.video} target="_blank" rel="noreferrer" className="btn video">
+      Video
+    </a>
+  )}
+
+  {m.highlights && (
+    <a href={m.highlights} target="_blank" rel="noreferrer" className="btn highlights">
+      Highlights
+    </a>
+  )}
+
+  {m.stats && (
+    <a href={m.stats} target="_blank" rel="noreferrer" className="btn stats">
+      Stats
+    </a>
+  )}
+</div>
               </div>
             </div>
           ))}
