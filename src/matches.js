@@ -142,7 +142,6 @@ const matches = [
     highlights: "",
     stats: "https://easystats-bball.s3.amazonaws.com/E7A6B582-E7AD-435D-81A1-3E2AF0D462C0.html"
     }
-  }
 ];
 
 export default matches;
