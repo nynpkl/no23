@@ -69,6 +69,19 @@ export default function App() {
             onChange={(e) => setEndDate(e.target.value)}
             style={styles.dateInput}
           />
+
+          {(startDate || endDate) && (
+            <button
+              onClick={() => {
+                setStartDate("");
+                setEndDate("");
+              }}
+              style={styles.clearBtn}
+              title="Tarih filtresini temizle"
+            >
+              ✕
+            </button>
+          )}
         </div>
       </div>
 
@@ -157,6 +170,14 @@ const styles = {
     border: "none",
     background: "transparent",
     fontSize: 13
+  },
+
+  clearBtn: {
+    border: "none",
+    background: "transparent",
+    cursor: "pointer",
+    color: "#999",
+    fontSize: 14
   },
 
   list: {
