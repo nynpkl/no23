@@ -30,7 +30,7 @@ export default function App() {
       {/* HEADER */}
       <header style={styles.hero}>
         <div style={styles.badge}>🔒 Özel Maç Arşivi</div>
-        <h1 style={styles.title}>NO23 BASKETBALL</h1>
+        <h1 style={styles.title}>NO23 Basketball Academy</h1>
         <p style={styles.subtitle}>
           Maç videoları ve istatistikler tek yerde
         </p>
