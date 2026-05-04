@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <div style={styles.page}>
-      <h1 style={styles.title}>No23 Match Archive</h1>
+      <h1 style={styles.title}>No23 Basketball Academy Match Archive</h1>
 
       <div style={styles.filters}>
         <select onChange={(e) => setAgeFilter(e.target.value)} style={styles.select}>
@@ -97,7 +97,7 @@ export default function App() {
                 </span>
               </div>
 
-              <div style={styles.match}>No23 vs {m.opponent}</div>
+              <div style={styles.match}>No23 Basketball Academy vs {m.opponent}</div>
 
               <div style={styles.sub}>
                 {m.date} • Skor: {m.score}
