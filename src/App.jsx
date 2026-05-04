@@ -11,10 +11,7 @@ export default function App() {
 
   const formatDate = (dateStr) => {
     const d = new Date(dateStr);
-    const day = String(d.getDate()).padStart(2, "0");
-    const month = String(d.getMonth() + 1).padStart(2, "0");
-    const year = d.getFullYear();
-    return `${day}/${month}/${year}`;
+    return d.toLocaleDateString("tr-TR");
   };
 
   const filtered = matches
@@ -35,335 +32,384 @@ export default function App() {
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
-    <div style={styles.page}>
-      <header style={styles.header}>
-        <div>
-          <div style={styles.kicker}>No23 Basketball Academy</div>
-          <h1 style={styles.title}>Match Archive</h1>
+    <>
+      <style>{`
+        * {
+          box-sizing: border-box;
+        }
+
+        body {
+          margin: 0;
+          background: #ffffff;
+          color: #111111;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        }
+
+        .page {
+          max-width: 920px;
+          margin: 0 auto;
+          padding: 28px 18px;
+        }
+
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          gap: 16px;
+          border-bottom: 1px solid #eeeeee;
+          padding-bottom: 18px;
+          margin-bottom: 20px;
+        }
+
+        .kicker {
+          color: #777777;
+          font-weight: 700;
+          font-size: 14px;
+          margin-bottom: 4px;
+        }
+
+        .title {
+          margin: 0;
+          font-size: 38px;
+          line-height: 1.05;
+          letter-spacing: -1px;
+        }
+
+        .count {
+          background: #f7efc6;
+          border: 1px solid #eadb98;
+          padding: 7px 12px;
+          border-radius: 999px;
+          font-weight: 700;
+          white-space: nowrap;
+          font-size: 14px;
+        }
+
+        .filters {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-bottom: 18px;
+        }
+
+        .select,
+        .dateGroup {
+          height: 38px;
+          border: 1px solid #dddddd;
+          border-radius: 10px;
+          background: #ffffff;
+          padding: 0 11px;
+          font-size: 14px;
+        }
+
+        .dateGroup {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          background: #fafafa;
+        }
+
+        .dateLabel {
+          color: #666666;
+          font-weight: 700;
+          font-size: 13px;
+        }
+
+        .dateInput {
+          border: none;
+          background: transparent;
+          outline: none;
+          font-size: 13px;
+          width: 120px;
+        }
+
+        .clearBtn {
+          border: none;
+          background: transparent;
+          cursor: pointer;
+          color: #999999;
+          font-size: 13px;
+        }
+
+        .list {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .card {
+          border: 1px solid #eeeeee;
+          border-radius: 14px;
+          padding: 14px;
+          background: #ffffff;
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+        }
+
+        .cardTop {
+          display: flex;
+          gap: 7px;
+          align-items: center;
+          flex-wrap: wrap;
+          margin-bottom: 7px;
+          font-size: 13px;
+        }
+
+        .badge {
+          background: #f6e9ad;
+          border-radius: 7px;
+          padding: 3px 7px;
+          font-weight: 700;
+          color: #111111;
+        }
+
+        .meta {
+          color: #777777;
+          font-weight: 600;
+        }
+
+        .win {
+          color: #118000;
+          font-weight: 700;
+        }
+
+        .lose {
+          color: #c40000;
+          font-weight: 700;
+        }
+
+        .cardMain {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 12px;
+          align-items: center;
+        }
+
+        .match {
+          font-size: 21px;
+          font-weight: 800;
+          line-height: 1.18;
+          letter-spacing: -0.3px;
+        }
+
+        .vs {
+          color: #777777;
+          font-weight: 700;
+        }
+
+        .sub {
+          margin-top: 4px;
+          color: #666666;
+          font-size: 14px;
+        }
+
+        .actions {
+          display: flex;
+          gap: 7px;
+          align-items: center;
+        }
+
+        .btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          height: 34px;
+          padding: 0 12px;
+          border-radius: 9px;
+          text-decoration: none;
+          font-size: 13px;
+          font-weight: 800;
+          white-space: nowrap;
+        }
+
+        .video {
+          background: #111111;
+          color: #ffffff;
+        }
+
+        .highlights {
+          background: #f6e9ad;
+          color: #111111;
+        }
+
+        .stats {
+          background: #ffffff;
+          color: #111111;
+          border: 1px solid #dddddd;
+        }
+
+        @media (max-width: 640px) {
+          .page {
+            padding: 22px 14px;
+          }
+
+          .header {
+            align-items: flex-start;
+          }
+
+          .title {
+            font-size: 34px;
+          }
+
+          .select {
+            flex: 1 1 calc(50% - 8px);
+            min-width: 130px;
+          }
+
+          .dateGroup {
+            width: 100%;
+            height: auto;
+            min-height: 42px;
+            flex-wrap: wrap;
+            padding: 8px 10px;
+          }
+
+          .dateInput {
+            width: 125px;
+          }
+
+          .card {
+            padding: 13px;
+          }
+
+          .cardMain {
+            grid-template-columns: 1fr;
+            gap: 10px;
+          }
+
+          .match {
+            font-size: 20px;
+          }
+
+          .actions {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 7px;
+          }
+
+          .btn {
+            width: 100%;
+            padding: 0 8px;
+            font-size: 13px;
+          }
+        }
+      `}</style>
+
+      <div className="page">
+        <header className="header">
+          <div>
+            <div className="kicker">No23 Basketball Academy</div>
+            <h1 className="title">Match Archive</h1>
+          </div>
+          <div className="count">{filtered.length} maç</div>
+        </header>
+
+        <div className="filters">
+          <select className="select" onChange={(e) => setSeasonFilter(e.target.value)}>
+            <option value="All">Sezon</option>
+            <option>2025-2026</option>
+            <option>2026-2027</option>
+          </select>
+
+          <select className="select" onChange={(e) => setAgeFilter(e.target.value)}>
+            <option value="All">Yaş</option>
+            <option>U8</option>
+            <option>U9</option>
+            <option>U10</option>
+            <option>U11</option>
+            <option>U12</option>
+          </select>
+
+          <select className="select" onChange={(e) => setLeagueFilter(e.target.value)}>
+            <option value="All">Lig</option>
+            <option>Unibest</option>
+            <option>Gelişim</option>
+            <option>TBF</option>
+          </select>
+
+          <select className="select" onChange={(e) => setResultFilter(e.target.value)}>
+            <option value="All">Sonuç</option>
+            <option>Galibiyet</option>
+            <option>Mağlubiyet</option>
+          </select>
+
+          <div className="dateGroup">
+            <span className="dateLabel">Tarih</span>
+
+            <input
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              className="dateInput"
+            />
+
+            <span>–</span>
+
+            <input
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              className="dateInput"
+            />
+
+            {(startDate || endDate) && (
+              <button
+                onClick={() => {
+                  setStartDate("");
+                  setEndDate("");
+                }}
+                className="clearBtn"
+                title="Tarih filtresini temizle"
+              >
+                ✕
+              </button>
+            )}
+          </div>
         </div>
-        <div style={styles.count}>{filtered.length} maç</div>
-      </header>
 
-      <div style={styles.filters}>
-        <select onChange={(e) => setSeasonFilter(e.target.value)} style={styles.select}>
-          <option value="All">Sezon</option>
-          <option>2025-2026</option>
-          <option>2026-2027</option>
-        </select>
-
-        <select onChange={(e) => setAgeFilter(e.target.value)} style={styles.select}>
-          <option value="All">Yaş</option>
-          <option>U8</option>
-          <option>U9</option>
-          <option>U10</option>
-          <option>U11</option>
-          <option>U12</option>
-        </select>
-
-        <select onChange={(e) => setLeagueFilter(e.target.value)} style={styles.select}>
-          <option value="All">Lig</option>
-          <option>Unibest</option>
-          <option>Gelişim</option>
-          <option>TBF</option>
-        </select>
-
-        <select onChange={(e) => setResultFilter(e.target.value)} style={styles.select}>
-          <option value="All">Sonuç</option>
-          <option>Galibiyet</option>
-          <option>Mağlubiyet</option>
-        </select>
-
-        <div style={styles.dateGroup}>
-          <span style={styles.label}>Tarih</span>
-
-          <input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            style={styles.dateInput}
-          />
-
-          <span style={styles.arrow}>–</span>
-
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            style={styles.dateInput}
-          />
-
-          {(startDate || endDate) && (
-            <button
-              onClick={() => {
-                setStartDate("");
-                setEndDate("");
-              }}
-              style={styles.clearBtn}
-              title="Tarih filtresini temizle"
-            >
-              ✕
-            </button>
-          )}
-        </div>
-      </div>
-
-      <div style={styles.list}>
-        {filtered.map((m) => (
-          <div key={m.id} style={styles.card}>
-            <div style={styles.main}>
-              <div style={styles.topLine}>
-                <span style={styles.badge}>{m.season}</span>
-                <span style={styles.badge}>{m.age}</span>
-                <span style={styles.meta}>{m.league}</span>
-                <span style={m.result === "Galibiyet" ? styles.win : styles.lose}>
+        <div className="list">
+          {filtered.map((m) => (
+            <div key={m.id} className="card">
+              <div className="cardTop">
+                <span className="badge">{m.season}</span>
+                <span className="badge">{m.age}</span>
+                <span className="meta">{m.league}</span>
+                <span className={m.result === "Galibiyet" ? "win" : "lose"}>
                   {m.result}
                 </span>
               </div>
 
-              <div style={styles.match}>
-                No23 Basketball Academy <span style={styles.vs}>vs</span> {m.opponent}
-              </div>
+              <div className="cardMain">
+                <div>
+                  <div className="match">
+                    No23 Basketball Academy <span className="vs">vs</span> {m.opponent}
+                  </div>
+                  <div className="sub">
+                    {formatDate(m.date)} · Skor: {m.score}
+                  </div>
+                </div>
 
-              <div style={styles.sub}>
-                {formatDate(m.date)} · Skor: {m.score}
+                <div className="actions">
+                  <a href={m.video} target="_blank" rel="noreferrer" className="btn video">
+                    Video
+                  </a>
+                  <a
+                    href={m.highlights}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn highlights"
+                  >
+                    Highlights
+                  </a>
+                  <a href={m.stats} target="_blank" rel="noreferrer" className="btn stats">
+                    Stats
+                  </a>
+                </div>
               </div>
             </div>
-
-            <div style={styles.actions}>
-              <a href={m.video} target="_blank" rel="noreferrer" style={styles.video}>
-                Video
-              </a>
-
-              <a href={m.highlights} target="_blank" rel="noreferrer" style={styles.highlights}>
-                Highlights
-              </a>
-
-              <a href={m.stats} target="_blank" rel="noreferrer" style={styles.stats}>
-                Stats
-              </a>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
-
-const styles = {
-  page: {
-    background: "#ffffff",
-    color: "#111",
-    minHeight: "100vh",
-    fontFamily:
-      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-    padding: "28px 18px",
-    maxWidth: 980,
-    margin: "0 auto",
-    boxSizing: "border-box"
-  },
-
-  header: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "flex-end",
-    gap: 16,
-    marginBottom: 22,
-    borderBottom: "1px solid #eee",
-    paddingBottom: 18,
-    flexWrap: "wrap"
-  },
-
-  kicker: {
-    fontSize: 14,
-    color: "#777",
-    fontWeight: 600,
-    marginBottom: 4
-  },
-
-  title: {
-    margin: 0,
-    fontSize: "clamp(30px, 5vw, 44px)",
-    lineHeight: 1.05,
-    letterSpacing: "-1px"
-  },
-
-  count: {
-    fontSize: 13,
-    background: "#f5f1dc",
-    border: "1px solid #eee2a8",
-    padding: "6px 10px",
-    borderRadius: 999,
-    color: "#333",
-    fontWeight: 600
-  },
-
-  filters: {
-    display: "flex",
-    gap: 8,
-    marginBottom: 18,
-    flexWrap: "wrap"
-  },
-
-  select: {
-    height: 38,
-    padding: "0 12px",
-    border: "1px solid #ddd",
-    borderRadius: 10,
-    background: "#fff",
-    fontSize: 14,
-    color: "#111"
-  },
-
-  dateGroup: {
-    minHeight: 38,
-    display: "flex",
-    alignItems: "center",
-    gap: 7,
-    border: "1px solid #ddd",
-    padding: "0 10px",
-    borderRadius: 10,
-    background: "#fafafa",
-    flexWrap: "wrap"
-  },
-
-  label: {
-    fontSize: 13,
-    color: "#666",
-    fontWeight: 600
-  },
-
-  arrow: {
-    color: "#aaa"
-  },
-
-  dateInput: {
-    border: "none",
-    background: "transparent",
-    fontSize: 13,
-    maxWidth: 125,
-    outline: "none"
-  },
-
-  clearBtn: {
-    border: "none",
-    background: "transparent",
-    cursor: "pointer",
-    color: "#999",
-    fontSize: 13
-  },
-
-  list: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 10
-  },
-
-  card: {
-    display: "grid",
-    gridTemplateColumns: "1fr auto",
-    gap: 14,
-    alignItems: "center",
-    border: "1px solid #eeeeee",
-    borderRadius: 14,
-    padding: 14,
-    background: "#fff",
-    boxShadow: "0 1px 4px rgba(0,0,0,0.03)"
-  },
-
-  main: {
-    minWidth: 0
-  },
-
-  topLine: {
-    display: "flex",
-    gap: 7,
-    marginBottom: 7,
-    fontSize: 13,
-    flexWrap: "wrap",
-    alignItems: "center"
-  },
-
-  badge: {
-    background: "#f5e8ad",
-    padding: "3px 7px",
-    borderRadius: 7,
-    fontWeight: 600,
-    color: "#111"
-  },
-
-  meta: {
-    color: "#777",
-    fontWeight: 500
-  },
-
-  win: {
-    color: "#168000",
-    fontWeight: 600
-  },
-
-  lose: {
-    color: "#c60000",
-    fontWeight: 600
-  },
-
-  match: {
-    fontWeight: 750,
-    fontSize: "clamp(18px, 3vw, 23px)",
-    lineHeight: 1.2,
-    letterSpacing: "-0.3px"
-  },
-
-  vs: {
-    color: "#777",
-    fontWeight: 600
-  },
-
-  sub: {
-    fontSize: 14,
-    color: "#666",
-    marginTop: 4
-  },
-
-  actions: {
-    display: "flex",
-    gap: 7,
-    flexWrap: "wrap",
-    justifyContent: "flex-end"
-  },
-
-  video: {
-    background: "#111",
-    color: "#fff",
-    padding: "8px 12px",
-    borderRadius: 9,
-    textDecoration: "none",
-    fontSize: 13,
-    fontWeight: 700,
-    textAlign: "center"
-  },
-
-  highlights: {
-    background: "#f5e8ad",
-    color: "#111",
-    padding: "8px 12px",
-    borderRadius: 9,
-    textDecoration: "none",
-    fontSize: 13,
-    fontWeight: 700,
-    textAlign: "center"
-  },
-
-  stats: {
-    border: "1px solid #ddd",
-    padding: "8px 12px",
-    borderRadius: 9,
-    textDecoration: "none",
-    fontSize: 13,
-    color: "#111",
-    fontWeight: 700,
-    textAlign: "center",
-    background: "#fff"
-  },
-
-  "@media": {}
-};
