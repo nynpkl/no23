@@ -2,13 +2,13 @@ import { useState } from "react";
 import matches from "./matches";
 
 export default function App() {
+  const [seasonFilter, setSeasonFilter] = useState("All");
   const [ageFilter, setAgeFilter] = useState("All");
   const [leagueFilter, setLeagueFilter] = useState("All");
   const [resultFilter, setResultFilter] = useState("All");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  // ✅ TARİH FORMAT FONKSİYONU
   const formatDate = (dateStr) => {
     const d = new Date(dateStr);
     const day = String(d.getDate()).padStart(2, "0");
@@ -24,6 +24,7 @@ export default function App() {
       const end = endDate ? new Date(endDate) : null;
 
       return (
+        (seasonFilter === "All" || m.season === seasonFilter) &&
         (ageFilter === "All" || m.age === ageFilter) &&
         (leagueFilter === "All" || m.league === leagueFilter) &&
         (resultFilter === "All" || m.result === resultFilter) &&
@@ -38,6 +39,12 @@ export default function App() {
       <h1 style={styles.title}>No23 Basketball Academy Match Archive</h1>
 
       <div style={styles.filters}>
+        <select onChange={(e) => setSeasonFilter(e.target.value)} style={styles.select}>
+          <option value="All">Sezon</option>
+          <option>2025-2026</option>
+          <option>2026-2027</option>
+        </select>
+
         <select onChange={(e) => setAgeFilter(e.target.value)} style={styles.select}>
           <option value="All">Yaş</option>
           <option>U8</option>
@@ -99,6 +106,7 @@ export default function App() {
           <div key={m.id} style={styles.row}>
             <div style={styles.left}>
               <div style={styles.topLine}>
+                <span style={styles.badge}>{m.season}</span>
                 <span style={styles.badge}>{m.age}</span>
                 <span style={styles.meta}>{m.league}</span>
                 <span style={m.result === "Galibiyet" ? styles.win : styles.lose}>
