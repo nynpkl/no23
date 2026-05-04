@@ -51,19 +51,24 @@ export default function App() {
           <option>Mağlubiyet</option>
         </select>
 
-        <input
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-          style={styles.select}
-        />
+        <div style={styles.dateGroup}>
+  <span style={styles.label}>Tarih:</span>
 
-        <input
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-          style={styles.select}
-        />
+  <input
+    type="date"
+    value={startDate}
+    onChange={(e) => setStartDate(e.target.value)}
+    style={styles.dateInput}
+  />
+
+  <span style={styles.arrow}>→</span>
+
+  <input
+    type="date"
+    value={endDate}
+    onChange={(e) => setEndDate(e.target.value)}
+    style={styles.dateInput}
+  />
       </div>
 
       <div style={styles.list}>
