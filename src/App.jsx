@@ -206,4 +206,27 @@ const styles = {
     fontSize: 12,
     color: "#111"
   }
+      dateGroup: {
+  display: "flex",
+  alignItems: "center",
+  gap: 8,
+  border: "1px solid #ddd",
+  padding: "6px 10px",
+  borderRadius: 8,
+  background: "#fafafa"
+},
+
+label: {
+  fontSize: 13,
+  color: "#555"
+},
+
+arrow: {
+  color: "#aaa"
+},
+
+dateInput: {
+  border: "none",
+  background: "transparent",
+  fontSize: 13
 };
