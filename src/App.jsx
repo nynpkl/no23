@@ -8,62 +8,67 @@ const matches = [
     venue: "BGM Salon C3",
     videoUrl: "https://youtube.com",
     statsUrl: "https://docs.google.com",
-    note: "Maç videosu ve istatistik linki."
+    note: "Skor : 31-33 (M)"
   },
   {
     date: "26.04.2026",
     category: "U9",
     league: "Unibest Ligi",
     home: "No23 Basketball Academy",
-    away: "Anka Avrupa",
+    away: "Bahçeşehir İhtisas B",
     venue: "İstanbul",
     videoUrl: "https://youtube.com",
     statsUrl: "https://docs.google.com",
-    note: "Ata #0 gelişim takibi için arşivlendi."
+    note: "Skor : 14-6 (G)"
   }
 ];
 
 export default function App() {
   return (
     <div style={styles.page}>
+      
+      {/* HEADER */}
       <header style={styles.hero}>
         <div style={styles.badge}>🔒 Özel Maç Arşivi</div>
-        <h1 style={styles.title}>No23 Basketball Academy</h1>
+        <h1 style={styles.title}>NO23 BASKETBALL</h1>
         <p style={styles.subtitle}>
-          Maç videoları, istatistik linkleri ve maç notları tek yerde.
+          Maç videoları ve istatistikler tek yerde
         </p>
       </header>
 
+      {/* CONTENT */}
       <main style={styles.container}>
-        <div style={styles.infoBar}>
-          <strong>{matches.length}</strong> maç listeleniyor
+        <div style={styles.info}>
+          {matches.length} maç listeleniyor
         </div>
 
         <div style={styles.grid}>
-          {matches.map((match, index) => (
-            <div key={index} style={styles.card}>
+          {matches.map((m, i) => (
+            <div key={i} style={styles.card}>
+
               <div style={styles.cardTop}>
-                <span style={styles.category}>{match.category}</span>
-                <h2 style={styles.matchTitle}>
-                  {match.home} vs {match.away}
+                <span style={styles.category}>{m.category}</span>
+                <h2 style={styles.match}>
+                  {m.home} vs {m.away}
                 </h2>
-                <p style={styles.league}>{match.league}</p>
+                <p style={styles.league}>{m.league}</p>
               </div>
 
               <div style={styles.cardBody}>
-                <p><strong>📅 Tarih:</strong> {match.date}</p>
-                <p><strong>📍 Salon:</strong> {match.venue}</p>
-                <p style={styles.note}>{match.note}</p>
+                <p>📅 {m.date}</p>
+                <p>📍 {m.venue}</p>
+                <p style={styles.note}>{m.note}</p>
 
                 <div style={styles.buttons}>
-                  <a style={styles.videoButton} href={match.videoUrl} target="_blank">
-                    ▶ Maçı İzle
+                  <a href={m.videoUrl} target="_blank" style={styles.video}>
+                    ▶ İzle
                   </a>
-                  <a style={styles.statsButton} href={match.statsUrl} target="_blank">
-                    📊 İstatistik
+                  <a href={m.statsUrl} target="_blank" style={styles.stats}>
+                    📊 Stats
                   </a>
                 </div>
               </div>
+
             </div>
           ))}
         </div>
@@ -74,99 +79,122 @@ export default function App() {
 
 const styles = {
   page: {
+    background: "#000",
+    color: "#fff",
     minHeight: "100vh",
-    background: "#0f172a",
-    color: "white",
-    fontFamily: "Arial, sans-serif"
+    fontFamily: "Arial"
   },
+
   hero: {
-    padding: "60px 24px",
-    background: "linear-gradient(135deg, #991b1b, #0f172a)",
-    textAlign: "center"
+    padding: "60px 20px",
+    textAlign: "center",
+    borderBottom: "1px solid #222"
   },
+
   badge: {
     display: "inline-block",
-    padding: "8px 16px",
-    borderRadius: "999px",
-    background: "rgba(255,255,255,0.15)",
+    background: "#facc15",
+    color: "#000",
+    padding: "6px 14px",
+    borderRadius: 999,
+    fontWeight: "bold",
     marginBottom: 20
   },
+
   title: {
-    fontSize: 46,
-    margin: 0
+    fontSize: 44,
+    margin: 0,
+    letterSpacing: 2
   },
+
   subtitle: {
-    fontSize: 18,
-    color: "rgba(255,255,255,0.75)"
+    color: "#aaa"
   },
+
   container: {
     maxWidth: 1100,
     margin: "0 auto",
-    padding: 24
+    padding: 20
   },
-  infoBar: {
+
+  info: {
     marginBottom: 20,
-    color: "rgba(255,255,255,0.7)"
+    color: "#aaa"
   },
+
   grid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
     gap: 20
   },
+
   card: {
-    background: "rgba(255,255,255,0.08)",
-    border: "1px solid rgba(255,255,255,0.12)",
-    borderRadius: 24,
-    overflow: "hidden"
+    border: "1px solid #222",
+    borderRadius: 20,
+    overflow: "hidden",
+    background: "#111",
+    transition: "0.2s"
   },
+
   cardTop: {
-    padding: 24,
-    background: "linear-gradient(135deg, #dc2626, #1e293b)"
+    padding: 20,
+    background: "#000",
+    borderBottom: "1px solid #222"
   },
+
   category: {
-    background: "white",
-    color: "#0f172a",
-    padding: "6px 12px",
+    background: "#facc15",
+    color: "#000",
+    padding: "4px 10px",
     borderRadius: 999,
-    fontWeight: "bold",
-    fontSize: 13
+    fontSize: 12,
+    fontWeight: "bold"
   },
-  matchTitle: {
-    marginTop: 20,
-    fontSize: 24
+
+  match: {
+    marginTop: 15,
+    fontSize: 20
   },
+
   league: {
-    color: "rgba(255,255,255,0.75)"
+    color: "#888",
+    fontSize: 14
   },
+
   cardBody: {
-    padding: 24,
-    color: "rgba(255,255,255,0.82)"
+    padding: 20,
+    color: "#ccc"
   },
+
   note: {
-    marginTop: 16,
+    marginTop: 10,
     minHeight: 40
   },
+
   buttons: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: 12,
-    marginTop: 24
+    marginTop: 20,
+    display: "flex",
+    gap: 10
   },
-  videoButton: {
+
+  video: {
+    flex: 1,
     textAlign: "center",
-    background: "#dc2626",
-    color: "white",
-    padding: 14,
-    borderRadius: 14,
+    background: "#facc15",
+    color: "#000",
+    padding: 12,
+    borderRadius: 10,
     textDecoration: "none",
     fontWeight: "bold"
   },
-  statsButton: {
+
+  stats: {
+    flex: 1,
     textAlign: "center",
-    background: "white",
-    color: "#0f172a",
-    padding: 14,
-    borderRadius: 14,
+    border: "1px solid #facc15",
+    color: "#facc15",
+    padding: 12,
+    borderRadius: 10,
     textDecoration: "none",
     fontWeight: "bold"
   }
