@@ -129,12 +129,7 @@ export default function App() {
                 Video
               </a>
 
-              <a
-                href={m.highlights}
-                target="_blank"
-                rel="noreferrer"
-                style={styles.highlights}
-              >
+              <a href={m.highlights} target="_blank" rel="noreferrer" style={styles.highlights}>
                 Highlights
               </a>
 
@@ -155,13 +150,16 @@ const styles = {
     color: "#111",
     minHeight: "100vh",
     fontFamily: "Arial",
-    padding: 30,
+    padding: "24px",
     maxWidth: 900,
-    margin: "0 auto"
+    margin: "0 auto",
+    boxSizing: "border-box"
   },
 
   title: {
-    marginBottom: 20
+    marginBottom: 20,
+    fontSize: "clamp(32px, 8vw, 58px)",
+    lineHeight: 1.08
   },
 
   filters: {
@@ -172,9 +170,11 @@ const styles = {
   },
 
   select: {
-    padding: 8,
+    padding: "10px 14px",
     border: "1px solid #ddd",
-    borderRadius: 6
+    borderRadius: 8,
+    fontSize: 16,
+    maxWidth: "100%"
   },
 
   dateGroup: {
@@ -182,13 +182,15 @@ const styles = {
     alignItems: "center",
     gap: 8,
     border: "1px solid #ddd",
-    padding: "6px 10px",
+    padding: "8px 10px",
     borderRadius: 8,
-    background: "#fafafa"
+    background: "#fafafa",
+    flexWrap: "wrap",
+    maxWidth: "100%"
   },
 
   label: {
-    fontSize: 13,
+    fontSize: 14,
     color: "#555"
   },
 
@@ -199,7 +201,8 @@ const styles = {
   dateInput: {
     border: "none",
     background: "transparent",
-    fontSize: 13
+    fontSize: 14,
+    maxWidth: 135
   },
 
   clearBtn: {
@@ -219,25 +222,32 @@ const styles = {
   row: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "flex-start",
     border: "1px solid #eee",
-    borderRadius: 10,
-    padding: 14
+    borderRadius: 14,
+    padding: 14,
+    gap: 14,
+    flexWrap: "wrap"
   },
 
-  left: {},
+  left: {
+    flex: "1 1 260px",
+    minWidth: 0
+  },
 
   topLine: {
     display: "flex",
     gap: 8,
-    marginBottom: 6,
-    fontSize: 12
+    marginBottom: 8,
+    fontSize: 14,
+    flexWrap: "wrap",
+    alignItems: "center"
   },
 
   badge: {
     background: "#f4e7b2",
-    padding: "2px 6px",
-    borderRadius: 4
+    padding: "4px 8px",
+    borderRadius: 6
   },
 
   meta: {
@@ -253,44 +263,55 @@ const styles = {
   },
 
   match: {
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontSize: "clamp(22px, 5vw, 32px)",
+    lineHeight: 1.15
   },
 
   sub: {
-    fontSize: 13,
-    color: "#666"
+    fontSize: 16,
+    color: "#666",
+    marginTop: 4
   },
 
   right: {
     display: "flex",
-    gap: 8
+    gap: 8,
+    flexWrap: "wrap",
+    width: "100%"
   },
 
   video: {
     background: "#111",
     color: "#fff",
-    padding: "6px 10px",
-    borderRadius: 6,
+    padding: "10px 14px",
+    borderRadius: 8,
     textDecoration: "none",
-    fontSize: 12
+    fontSize: 16,
+    textAlign: "center",
+    flex: "1 1 90px"
   },
 
   highlights: {
     background: "#f4e7b2",
     color: "#111",
-    padding: "6px 10px",
-    borderRadius: 6,
+    padding: "10px 14px",
+    borderRadius: 8,
     textDecoration: "none",
-    fontSize: 12,
-    fontWeight: "bold"
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+    flex: "1 1 120px"
   },
 
   stats: {
     border: "1px solid #ddd",
-    padding: "6px 10px",
-    borderRadius: 6,
+    padding: "10px 14px",
+    borderRadius: 8,
     textDecoration: "none",
-    fontSize: 12,
-    color: "#111"
+    fontSize: 16,
+    color: "#111",
+    textAlign: "center",
+    flex: "1 1 80px"
   }
 };
