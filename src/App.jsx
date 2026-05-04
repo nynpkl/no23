@@ -52,23 +52,24 @@ export default function App() {
         </select>
 
         <div style={styles.dateGroup}>
-  <span style={styles.label}>Tarih:</span>
+          <span style={styles.label}>Tarih:</span>
 
-  <input
-    type="date"
-    value={startDate}
-    onChange={(e) => setStartDate(e.target.value)}
-    style={styles.dateInput}
-  />
+          <input
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            style={styles.dateInput}
+          />
 
-  <span style={styles.arrow}>→</span>
+          <span style={styles.arrow}>→</span>
 
-  <input
-    type="date"
-    value={endDate}
-    onChange={(e) => setEndDate(e.target.value)}
-    style={styles.dateInput}
-  />
+          <input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            style={styles.dateInput}
+          />
+        </div>
       </div>
 
       <div style={styles.list}>
@@ -131,6 +132,31 @@ const styles = {
     padding: 8,
     border: "1px solid #ddd",
     borderRadius: 6
+  },
+
+  dateGroup: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    border: "1px solid #ddd",
+    padding: "6px 10px",
+    borderRadius: 8,
+    background: "#fafafa"
+  },
+
+  label: {
+    fontSize: 13,
+    color: "#555"
+  },
+
+  arrow: {
+    color: "#aaa"
+  },
+
+  dateInput: {
+    border: "none",
+    background: "transparent",
+    fontSize: 13
   },
 
   list: {
@@ -206,27 +232,4 @@ const styles = {
     fontSize: 12,
     color: "#111"
   }
-      dateGroup: {
-  display: "flex",
-  alignItems: "center",
-  gap: 8,
-  border: "1px solid #ddd",
-  padding: "6px 10px",
-  borderRadius: 8,
-  background: "#fafafa"
-},
-
-label: {
-  fontSize: 13,
-  color: "#555"
-},
-
-arrow: {
-  color: "#aaa"
-},
-
-dateInput: {
-  border: "none",
-  background: "transparent",
-  fontSize: 13
 };
