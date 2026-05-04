@@ -24,7 +24,20 @@ const matches = [
     video: "https://youtu.be/8kvtyW0xYEY",
     highlights: "https://youtu.be/Li76M1V5Otg",
     stats: "https://easystats-bball.s3.amazonaws.com/D37D6467-1FBD-4B47-92CC-8E4C51B60F75.html"
-  }
+    },
+    {
+    id: 3,
+    season: "2025-2026",
+    date: "2026-03-14",
+    age: "U9",
+    league: "Gelişim",
+    result: "Galibiyet",
+    opponent: "T.E.D",
+    score: "28-22",
+    video: "https://youtu.be/lmHizWJQRs4",
+    highlights: "https://youtu.be/bPOS3_i6Nrs",
+    stats: "https://easystats-bball.s3.amazonaws.com/5FB2FA21-46F6-44F9-9579-85C15750F622.html"
+    }
 ];
 
 export default matches;
