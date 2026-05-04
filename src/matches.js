@@ -102,6 +102,19 @@ const matches = [
     video: "https://youtu.be/WsnPvmDXzYs",
     highlights: "",
     stats: ""
+    },
+    {
+    id: 9,
+    season: "2025-2026",
+    date: "2026-01-31",
+    age: "U9",
+    league: "Unibest",
+    result: "Mağlubiyet",
+    opponent: "Mimarsinan U10",
+    score: "16-38",
+    video: "https://youtu.be/9OETYDiebzQ",
+    highlights: "https://youtu.be/shdV7aAcB40",
+    stats: ""
     }
 ];
 
