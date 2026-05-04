@@ -37,6 +37,19 @@ const matches = [
     video: "https://youtu.be/lmHizWJQRs4",
     highlights: "https://youtu.be/bPOS3_i6Nrs",
     stats: "https://easystats-bball.s3.amazonaws.com/5FB2FA21-46F6-44F9-9579-85C15750F622.html"
+    },
+    {
+    id: 4,
+    season: "2025-2026",
+    date: "2026-03-29",
+    age: "U9",
+    league: "Gelişim",
+    result: "Galibiyet",
+    opponent: "Spor Fabrikası",
+    score: "54-8",
+    video: "https://youtu.be/329hW3BVXWo",
+    highlights: "https://youtu.be/HNgYK6qwb8w",
+    stats: "https://easystats-bball.s3.amazonaws.com/EA3F9B78-EEBB-4C34-B9B4-0F1A7F964CCE.html"
     }
 ];
 
