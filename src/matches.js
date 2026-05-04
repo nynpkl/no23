@@ -1,6 +1,7 @@
 const matches = [
   {
     id: 1,
+    season: "2025-2026",
     date: "2026-05-01",
     age: "U10",
     league: "TBF",
@@ -12,6 +13,7 @@ const matches = [
   },
   {
     id: 2,
+    season: "2025-2026",
     date: "2026-04-26",
     age: "U9",
     league: "Unibest",
