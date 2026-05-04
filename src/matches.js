@@ -9,6 +9,7 @@ const matches = [
     opponent: "Fatih Belediyesi",
     score: "31-33",
     video: "https://youtube.com",
+    highlights: "https://youtube.com",
     stats: "https://docs.google.com"
   },
   {
@@ -21,6 +22,7 @@ const matches = [
     opponent: "Bahçeşehir İhtisas B",
     score: "14-6",
     video: "https://youtube.com",
+    highlights: "https://youtube.com",
     stats: "https://docs.google.com"
   }
 ];
