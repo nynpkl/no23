@@ -233,6 +233,19 @@ const matches = [
     highlights: "https://youtu.be/axpesFGrkjc",
     stats: "https://easystats-bball.s3.amazonaws.com/34F4BE70-BC0E-4EB9-B643-66BA542907AC.html"
   }
+  {
+    id: 19,
+    season: "2025-2026",
+    date: "2026-04-23",
+    age: "U12",
+    league: "Gelişim",
+    result: "Galibiyet",
+    opponent: "Göktürk Atletik",
+    score: "64-27",
+    video: "https://www.youtube.com/watch?v=HVME67h6u5E",
+    highlights: "https://www.youtube.com/watch?v=Wfq5YUvOF2Q",
+    stats: ""
+  }
 ];
 
 export default matches;
