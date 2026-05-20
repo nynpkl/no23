@@ -232,7 +232,7 @@ const matches = [
     video: "https://youtu.be/-8bDpeRs7rk",
     highlights: "https://youtu.be/axpesFGrkjc",
     stats: "https://easystats-bball.s3.amazonaws.com/34F4BE70-BC0E-4EB9-B643-66BA542907AC.html"
-  }
+  },
   {
     id: 19,
     season: "2025-2026",
