@@ -245,6 +245,19 @@ const matches = [
     video: "https://www.youtube.com/watch?v=HVME67h6u5E",
     highlights: "https://www.youtube.com/watch?v=Wfq5YUvOF2Q",
     stats: ""
+  },
+  {
+    id: 20,
+    season: "2025-2026",
+    date: "2026-05-16",
+    age: "U12",
+    league: "Gelişim",
+    result: "Galibiyet",
+    opponent: "Açı Gençlik",
+    score: "48-28",
+    video: "https://www.youtube.com/watch?v=4fvJ3fnSvyM",
+    highlights: "",
+    stats: ""
   }
 ];
 
