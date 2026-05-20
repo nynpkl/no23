@@ -258,6 +258,19 @@ const matches = [
     video: "https://www.youtube.com/watch?v=4fvJ3fnSvyM",
     highlights: "",
     stats: ""
+  },
+  {
+    id: 21,
+    season: "2025-2026",
+    date: "2026-05-19",
+    age: "U12",
+    league: "Gelişim",
+    result: "Galibiyet",
+    opponent: "Cedi Osman Academy",
+    score: "47-31",
+    video: "https://www.youtube.com/watch?v=D5Unrx5KwAs",
+    highlights: "",
+    stats: ""
   }
 ];
 
